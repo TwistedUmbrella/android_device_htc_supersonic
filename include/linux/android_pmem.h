@@ -1,6 +1,7 @@
 /* include/linux/android_pmem.h
  *
  * Copyright (C) 2007 Google, Inc.
+ * Copyright (c) 2009-2010, Code Aurora Forum. All rights reserved.
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -51,8 +52,8 @@
  * start of the mapped gpu regs (the vaddr returned by mmap) as the argument.
  */
 #define HW3D_REVOKE_GPU		_IOW(PMEM_IOCTL_MAGIC, 8, unsigned int)
+#define PMEM_CACHE_FLUSH	_IOW(PMEM_IOCTL_MAGIC, 8, unsigned int)
 #define HW3D_GRANT_GPU		_IOW(PMEM_IOCTL_MAGIC, 9, unsigned int)
-#define HW3D_WAIT_FOR_INTERRUPT	_IOW(PMEM_IOCTL_MAGIC, 10, unsigned int)
 
 #define PMEM_CLEAN_INV_CACHES	_IOW(PMEM_IOCTL_MAGIC, 11, unsigned int)
 #define PMEM_CLEAN_CACHES	_IOW(PMEM_IOCTL_MAGIC, 12, unsigned int)
@@ -100,7 +101,6 @@ enum pmem_allocator_type {
 	 * defined
 	 */
 	PMEM_ALLOCATORTYPE_BITMAP = 0, /* forced to be zero here */
-	PMEM_ALLOCATORTYPE_SYSTEM,
 
 	PMEM_ALLOCATORTYPE_ALLORNOTHING,
 	PMEM_ALLOCATORTYPE_BUDDYBESTFIT,
@@ -135,6 +135,8 @@ int32_t pmem_kfree(const int32_t physaddr);
 struct android_pmem_platform_data
 {
 	const char* name;
+	/* starting physical address of memory region */
+	unsigned long start;
 	/* size of memory region */
 	unsigned long size;
 
@@ -151,26 +153,8 @@ struct android_pmem_platform_data
 	unsigned cached;
 	/* The MSM7k has bits to enable a write buffer in the bus controller*/
 	unsigned buffered;
-	/* which memory type (i.e. SMI, EBI1) this PMEM device is backed by */
-	unsigned memory_type;
-	/*
-	 * function to be called when the number of allocations goes from
-	 * 0 -> 1
-	 */
-	void (*request_region)(void *);
-	/*
-	 * function to be called when the number of allocations goes from
-	 * 1 -> 0
-	 */
-	void (*release_region)(void *);
-	/*
-	 * function to be called upon pmem registration
-	 */
-	void *(*setup_region)(void);
-	/*
-	 * indicates that this region should be mapped/unmaped as needed
-	 */
-	int map_on_demand;
+	/* This PMEM is on memory that may be powered off */
+	unsigned unstable;
 };
 
 int pmem_setup(struct android_pmem_platform_data *pdata,
@@ -182,4 +166,3 @@ int pmem_remap(struct pmem_region *region, struct file *file,
 #endif /* __KERNEL__ */
 
 #endif //_ANDROID_PPP_H_
-
