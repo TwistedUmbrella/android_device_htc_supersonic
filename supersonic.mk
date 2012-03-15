@@ -181,10 +181,6 @@ PRODUCT_COPY_FILES += \
     device/htc/supersonic/prebuilt/usr/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     device/htc/supersonic/prebuilt/usr/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
 
-# Firmware
-PRODUCT_COPY_FILES += \
-    device/htc/supersonic/firmware/bcm4329.hcd:system/etc/firmware/bcm4329.hcd
-
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
