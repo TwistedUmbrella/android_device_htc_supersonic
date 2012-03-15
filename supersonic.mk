@@ -265,6 +265,9 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
+# common qsd8k configs
+$(call inherit-product, device/htc/qsd8k-common/qsd8k.mk)
+
 # media profiles and capabilities spec
 $(call inherit-product, device/htc/supersonic/media_a1026.mk)
 
