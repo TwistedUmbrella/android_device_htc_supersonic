@@ -50,7 +50,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     device/htc/supersonic/prebuilt/root/init.supersonic.rc:root/init.supersonic.rc \
-    device/htc/supersonic/prebuilt/root/init.supersonic.usb.rc:root/init.supersonic.usb.rc \
     device/htc/supersonic/prebuilt/root/ueventd.supersonic.rc:root/ueventd.supersonic.rc 
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -92,35 +91,6 @@ PRODUCT_PACKAGES := \
     sensors.supersonic \
     librs_jni
 
-# Audio
-PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    audio.primary.qsd8k \
-    audio_policy.qsd8k
-
-# GPU
-PRODUCT_PACKAGES += \
-    copybit.qsd8k \
-    gralloc.qsd8k \
-    hwcomposer.default \
-    hwcomposer.qsd8k \
-    libgenlock \
-    libmemalloc \
-    libtilerenderer \
-    libQcomUI
-
-# Omx
-PRODUCT_PACKAGES += \
-    libOmxCore \
-    libOmxVidEnc \
-    libOmxVdec \
-    libstagefrighthw
-
-# Camera
-PRODUCT_PACKAGES += \
-    camera.qsd8k \
-    Camera
-
 # Applications
 PRODUCT_PACKAGES += \
     Development \
@@ -135,17 +105,6 @@ PRODUCT_PACKAGES += \
     DSPManager \
     libcyanogen-dsp \
     audio_effects.conf
-
-# Live Wallpapers
-PRODUCT_PACKAGES += \
-    Basic \
-    HoloSpiralWallpaper \
-    MagicSmokeWallpapers \
-    NoiseField \
-    Galaxy4 \
-    PhaseBeam \
-    LiveWallpapers \
-    VisualizationWallpapers
 
 # Applications
 PRODUCT_PACKAGES += \

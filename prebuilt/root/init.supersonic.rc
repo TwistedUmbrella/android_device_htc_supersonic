@@ -1,4 +1,4 @@
-import init.supersonic.usb.rc
+import init.qsd8k.usb.rc
 
 on init
 

@@ -42,7 +42,8 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 TARGET_BOOTLOADER_BOARD_NAME := supersonic
-TARGET_SPECIFIC_HEADER_PATH := device/htc/supersonic/include
+# TARGET_SPECIFIC_HEADER_PATH := device/htc/supersonic/include
+TARGET_SPECIFIC_HEADER_PATH := device/htc/qsd8k-common/include
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1
 BOARD_KERNEL_BASE := 0x20000000
