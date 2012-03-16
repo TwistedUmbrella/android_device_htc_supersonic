@@ -18,10 +18,6 @@
 # This is the product configuration for a generic supersonic,
 # not specialized for any geography.
 #
-# Inherit Vendor Files
-$(call inherit-product-if-exists, vendor/twisted/twisted-vendor.mk)
-$(call inherit-product-if-exists, vendor/twisted/google-neon.mk)
-$(call inherit-product-if-exists, vendor/twisted/google-vendor.mk)
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/supersonic/supersonic-vendor.mk)
@@ -79,6 +75,10 @@ PRODUCT_COPY_FILES += \
 # media config xml file
 PRODUCT_COPY_FILES += \
     device/htc/supersonic/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
+
+# Firmware
+PRODUCT_COPY_FILES += \
+    device/htc/supersonic/prebuilt/etc/firmware/default.acdb:/system/etc/firmware/default.acdb
 
 #
 # Packages needed for Supersonic
