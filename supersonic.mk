@@ -19,18 +19,6 @@
 # not specialized for any geography.
 #
 
-## (2) Also get non-open-source GSM-specific aspects if available
-$(call inherit-product-if-exists, vendor/htc/supersonic/supersonic-vendor.mk)
-
-#
-# Setup device specific product configuration.
-#
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-PRODUCT_NAME := htc_supersonic
-PRODUCT_DEVICE := supersonic
-PRODUCT_MODEL := HTC Evo 4G
-PRODUCT_MANUFACTURER := HTC
-
 # Set up the product codename, build version & MOTD.
 #PRODUCT_CODENAME := evo
 #PRODUCT_VERSION_DEVICE_SPECIFIC := alpha9
@@ -41,10 +29,15 @@ PRODUCT_MANUFACTURER := HTC
 PRODUCT_COPY_FILES += \
     device/htc/supersonic/prebuilt/etc/gps.conf:system/etc/gps.conf
 
+## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 PRODUCT_COPY_FILES += \
     device/htc/supersonic/prebuilt/root/init.supersonic.rc:root/init.supersonic.rc \
     device/htc/supersonic/prebuilt/root/ueventd.supersonic.rc:root/ueventd.supersonic.rc 
 
+## (2) Also get non-open-source GSM-specific aspects if available
+$(call inherit-product-if-exists, vendor/htc/supersonic/supersonic-vendor.mk)
+
+## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.com.google.clientidbase=android-sprint-us \
 	ro.com.google.locationfeatures=1 \
@@ -77,77 +70,22 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/supersonic/prebuilt/etc/firmware/default.acdb:/system/etc/firmware/default.acdb
 
-#
-# Packages needed for Supersonic
-#
 # Sensors and stuff
 PRODUCT_PACKAGES := \
-    com.android.future.usb.accessory \
     gps.supersonic \
     lights.supersonic \
-    sensors.supersonic \
-    librs_jni
+    sensors.supersonic
 
-# Applications
-PRODUCT_PACKAGES += \
-    Development \
-    FileManager \
-    Stk \
-    VoiceDialer \
-    SpareParts \
-    Torch
+# Temporary hack
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    persist.service.adb.enable=1
 
-# CyanogenMod Packages
-PRODUCT_PACKAGES += \
-    DSPManager \
-    libcyanogen-dsp \
-    audio_effects.conf
-
-# Applications
-PRODUCT_PACKAGES += \
-    Mms \
-    Superuser \
-    su
-
-# Live Wallpapers
-PRODUCT_PACKAGES += \
-    LiveWallpapersPicker
-
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    make_ext4fs \
-    setup_fs
-
-# Google Applications
+# Keylayouts
 PRODUCT_COPY_FILES += \
-    vendor/twisted/google/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
-    vendor/twisted/google/app/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
-    vendor/twisted/google/app/GoogleCalendarSyncAdapter.apk:system/app/GoogleCalendarSyncAdapter.apk \
-    vendor/twisted/google/app/GoogleContactsSyncAdapter.apk:system/app/GoogleContactsSyncAdapter.apk \
-    vendor/twisted/google/app/GoogleFeedback.apk:system/app/GoogleFeedback.apk \
-    vendor/twisted/google/app/GoogleLoginService.apk:system/app/GoogleLoginService.apk \
-    vendor/twisted/google/app/GooglePartnerSetup.apk:system/app/GooglePartnerSetup.apk \
-    vendor/twisted/google/app/GoogleServicesFramework.apk:system/app/GoogleServicesFramework.apk \
-    vendor/twisted/google/app/MarketUpdater.apk:system/app/MarketUpdater.apk \
-    vendor/twisted/google/app/MediaUploader.apk:system/app/MediaUploader.apk \
-    vendor/twisted/google/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
-    vendor/twisted/google/app/OneTimeInitializer.apk:system/app/OneTimeInitializer.apk \
-    vendor/twisted/google/app/SetupWizard.apk:system/app/SetupWizard.apk \
-    vendor/twisted/google/app/Talk.apk:system/app/Talk.apk \
-    vendor/twisted/google/app/Vending.apk:system/app/Vending.apk
-
-# Google Permissions
-PRODUCT_COPY_FILES += \
-    vendor/twisted/google/etc/permissions/com.google.android.maps.xml:system/etc/permissions/com.google.android.maps.xml \
-    vendor/twisted/google/etc/permissions/com.google.android.media.effects.xml:system/etc/permissions/com.google.android.media.effects.xml \
-    vendor/twisted/google/etc/permissions/com.google.widevine.software.drm.xml:system/etc/permissions/com.google.widevine.software.drm.xml \
-    vendor/twisted/google/etc/permissions/features.xml:system/etc/permissions/features.xml 
-
-# Google Frameworks
-PRODUCT_COPY_FILES += \
-    vendor/twisted/google/framework/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
-    vendor/twisted/google/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
-    vendor/twisted/google/framework/com.google.widevine.software.drm.jar:system/framework/com.google.widevine.software.drm.jar
+    device/htc/supersonic/prebuilt/usr/keylayout/supersonic-keypad.kl:system/usr/keylayout/supersonic-keypad.kl \
+    device/htc/supersonic/prebuilt/usr/keychars/supersonic-keypad.kcm.bin:system/usr/keychars/supersonic-keypad.kcm.bin \
+    device/htc/supersonic/prebuilt/usr/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
+    device/htc/supersonic/prebuilt/usr/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
 
 # Enable gpu composition 0 => cpu composition, 1 => gpu composition
 # Note: composition.type overrides this so i probably don't even need it.
@@ -166,17 +104,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     hwui.disable_vsync=true \
     hwui.print_config=choice \
     debug.enabletr=false
-
-# USB
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    persist.sys.usb.config=mass_storage
-
-# Keylayouts
-PRODUCT_COPY_FILES += \
-    device/htc/supersonic/prebuilt/usr/keylayout/supersonic-keypad.kl:system/usr/keylayout/supersonic-keypad.kl \
-    device/htc/supersonic/prebuilt/usr/keychars/supersonic-keypad.kcm.bin:system/usr/keychars/supersonic-keypad.kcm.bin \
-    device/htc/supersonic/prebuilt/usr/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
-    device/htc/supersonic/prebuilt/usr/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -217,6 +144,10 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
+# Script to signal boot completion for init.d
+PRODUCT_COPY_FILES += \
+    device/htc/speedy/prebuilt/system/etc/init.d/100complete:system/etc/init.d/100complete
+
 # common qsd8k configs
 $(call inherit-product, device/htc/qsd8k-common/qsd8k.mk)
 
@@ -228,6 +159,11 @@ $(call inherit-product, device/htc/common/common.mk)
 
 $(call inherit-product, build/target/product/full_base.mk)
 
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := htc_supersonic
 PRODUCT_DEVICE := supersonic
-PRODUCT_MODEL := Full Android on Supersonic
+PRODUCT_MODEL := HTC Evo 4G
+PRODUCT_MANUFACTURER := HTC
+
+# USB
+ADDITIONAL_DEFAULT_PROPERTIES += persist.sys.usb.config=mass_storage
