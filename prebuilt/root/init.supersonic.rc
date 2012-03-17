@@ -1,4 +1,5 @@
 import init.qsd8k.usb.rc
+import init.htc.kernel.rc
 
 on init
 
