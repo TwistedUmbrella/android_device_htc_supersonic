@@ -153,6 +153,7 @@ PRODUCT_NAME := htc_supersonic
 PRODUCT_DEVICE := supersonic
 PRODUCT_MODEL := HTC Evo 4G
 PRODUCT_MANUFACTURER := HTC
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=GRI40 PRODUCT_NAME=htc_supersonic BUILD_FINGERPRINT=sprint/htc_supersonic/supersonic:2.3.3/GRI40/61076:user/release-keys PRIVATE_BUILD_DESC="4.24.651.1 CL61076 release-keys"
 
 # USB
 ADDITIONAL_DEFAULT_PROPERTIES += persist.sys.usb.config=mass_storage
