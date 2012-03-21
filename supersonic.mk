@@ -19,12 +19,6 @@
 # not specialized for any geography.
 #
 
-# Set up the product codename, build version & MOTD.
-#PRODUCT_CODENAME := evo
-#PRODUCT_VERSION_DEVICE_SPECIFIC := alpha9
-
-#PRODUCT_MOTD :="Welcome to ics-deck"
-
 # The gps config appropriate for this device
 PRODUCT_COPY_FILES += \
     device/htc/supersonic/prebuilt/etc/gps.conf:system/etc/gps.conf
@@ -129,11 +123,6 @@ PRODUCT_COPY_FILES += $(shell \
 
 PRODUCT_COPY_FILES += \
     device/htc/supersonic/prebuilt/lib/libcryp98.so:system/lib/libcryp98.so
-
-# Temporary camera blob replacement
-PRODUCT_COPY_FILES += \
-    device/htc/supersonic/prebuilt/lib/libcamera.so:obj/lib/libcamera.so \
-    device/htc/supersonic/prebuilt/lib/libcamera.so:system/lib/libcamera.so
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
     LOCAL_KERNEL := device/htc/supersonic/prebuilt/root/kernel
