@@ -1,8 +1,6 @@
 import init.qsd8k.usb.rc
-import init.htc.kernel.rc
 
 on init
-
     export EXTERNAL_STORAGE /mnt/sdcard
     mkdir /mnt/sdcard 0000 system system
     # for backwards compatibility
