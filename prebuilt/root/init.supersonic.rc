@@ -36,6 +36,10 @@ on boot
     mkdir /data/wimax/ 0777  wimax wimax
     mkdir /data/wimax/log 0777  wimax wimax
 
+    symlink /system/vendor/firmware/fw_bcm4329.bin /vendor/firmware/fw_bcm4329.bin
+    symlink /system/vendor/firmware/fw_bcm4329_apsta.bin /vendor/firmware/fw_bcm4329_apsta.bin
+    symlink /system/vendor/firmware/bcm4329.hcd /vendor/firmware/bcm4329.hcd
+
     # bluetooth power up/down interface
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -217,7 +221,7 @@ service getWMXPropd /system/bin/getWiMAXPropDaemond
     oneshot
 
 service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
-    --baudrate 3000000 --patchram /etc/firmware/bcm4329.hcd /dev/ttyHS0
+    --baudrate 3000000 --patchram /vendor/firmware/bcm4329.hcd /dev/ttyHS0
     class main
     user bluetooth
     group bluetooth net_bt_admin
