@@ -62,6 +62,10 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 
 BOARD_HAVE_SQN_WIMAX := true
 
+# Wifi Specific Defines
+WIFI_DRIVER_MODULE_ARG := "firmware_path=/vendor/firmware/fw_bcm4329.bin nvram_path=/proc/calibration iface_name=eth0"
+TARGET_CUSTOM_IFACE := eth0
+
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 
 # # cat /proc/mtd
