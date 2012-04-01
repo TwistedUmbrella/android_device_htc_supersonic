@@ -47,3 +47,5 @@ ro.ril.set.mtu1472 = 1
 ro.cdma.voicemail.number = mine
 
 mobiledata.interfaces=rmnet0,gprs,wimax0
+
+persist.sys.root_access=3
