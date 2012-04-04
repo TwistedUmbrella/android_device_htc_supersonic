@@ -112,6 +112,9 @@ on boot
     write /sys/kernel/mm/ksm/sleep_millisecs 1500
     write /sys/kernel/mm/ksm/pages_to_scan 256
 
+# enable KSM
+    write /sys/kernel/mm/ksm/run 1
+
     # TCP buffer size tweaks to improve throughput
     write /proc/sys/net/core/wmem_max 524288
     write /proc/sys/net/core/rmem_max 524288
