@@ -99,6 +99,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
     hwui.print_config=choice \
     debug.enabletr=false
 
+# Dalvik properties
+# dexop-flags: "v=" n|r|a, "o=" n|v|a|f, "m=y" register map
+# v=verify o=optimize: n=none r=remote a=all f=full v=verified
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dexopt-flags=m=y \
+    dalvik.vm.checkjni=false
+
+# Default heap settings for 512mb device
+include frameworks/base/build/phone-hdpi-512-dalvik-heap.mk
+
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
