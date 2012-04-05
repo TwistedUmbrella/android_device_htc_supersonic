@@ -19,9 +19,9 @@
 # not specialized for any geography.
 #
 
-# Device GPS Properties
+# The gps config appropriate for this device
 PRODUCT_COPY_FILES += \
-    device/htc/common/system/etc/gps.conf:system/etc/gps.conf
+    device/htc/supersonic/prebuilt/etc/gps.conf:system/etc/gps.conf
 
 ## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 PRODUCT_COPY_FILES += \
