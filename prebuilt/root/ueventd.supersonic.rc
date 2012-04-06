@@ -1,8 +1,43 @@
 # misc partition
 mtd@misc                0460    radio   diag
 
-# the genlock client device node is world writable/readable.
-/dev/genlock            0666    system  graphics
+#video
+/dev/gemini0            0660    system      camera
+/dev/msm_camera/*       0660    system      camera
+/dev/pmem_camera*       0660    system      camera
+/dev/pmem_smipool*      0660    system      camera
+/dev/video*             0660    system      camera
+/dev/msm_vidc_dec       0660    system      audio
+/dev/msm_vidc_enc       0660    system      audio
+/dev/msm_vidc_reg       0660    system      audio
 
-# gpu driver for adreno200 is globally accessible
-/dev/kgsl-3d0           0666    system  graphics
+#audio
+/dev/htc-acdb           0660    system      audio
+/dev/msm_audio_dev_ctrl 0660    system      audio
+/dev/msm_acdb           0660    system      audio
+/dev/msm_pcm_lp_dec     0660    system      audio
+/dev/codec_aic3254      0660    system      audio
+/dev/pmem_audio         0660    system      audio
+/dev/gemini*	        0660    system      audio
+/dev/tpa2051d3          0660    system      audio
+/dev/pmem_adsp*         0660    system      audio
+/dev/adsp/*             0660    system      audio
+/dev/snd/*              0660    system      audio
+/dev/htc-acoustic       0660    system      audio
+/dev/msm_fm             0660    system      audio
+/dev/msm_amrnb*         0660    system      audio
+/dev/msm_aac*           0660    system      audio
+
+#graphics
+/dev/msm_rotator        0660    system      graphics
+/dev/kgsl-3d0           0666    root        root
+/dev/kgsl-2d0           0666    root        root
+/dev/kgsl-2d1           0666    root        root
+
+#genlock
+/dev/genlock            0666    root        root
+
+#bluetooth
+/dev/ttyHS0             0600    bluetooth   bluetooth
+/dev/ttyMSM0            0600    bluetooth   bluetooth
+/dev/uinput             0660    system      bluetooth

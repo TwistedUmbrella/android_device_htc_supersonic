@@ -68,6 +68,8 @@ on boot
     chmod 0660          /sys/devices/platform/flashlight.0/leds/flashlight/brightness
 
     # Add permissions for camera access
+    chmod 0660 /sys/android_camera2/htcwc
+    chown media system /sys/android_camera2/htcwc
     chmod 0666 /dev/msm_camera/config1
     chmod 0666 /dev/msm_camera/control1
     chmod 0666 /dev/msm_camera/frame1
