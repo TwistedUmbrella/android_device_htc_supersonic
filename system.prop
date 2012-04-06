@@ -24,11 +24,6 @@ ro.ril.def.agps.mode = 2
 # For auto backlight default value
 settings.display.autobacklight=1
 
-# Playground Panel
-debug.enabletr=false
-gsm.proximity.enable=1
-ro.config.play.bootsound=1
-
 # default value of brightness
 settings.display.brightness=143
 
