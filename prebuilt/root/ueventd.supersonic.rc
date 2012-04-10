@@ -1,7 +1,7 @@
 # misc partition
 mtd@misc                0460    radio   diag
 
-/dev/oncrpc/*           0660    radio       system
+/dev/oncrpc/*           0660    root        system
 
 #video
 /dev/gemini0            0660    system      camera
