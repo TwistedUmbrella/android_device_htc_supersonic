@@ -37,6 +37,9 @@ mtd@misc                0460    radio   diag
 #genlock
 /dev/genlock            0666    root        root
 
+#gps
+/dev/oncrpc/*           0660    root        system
+
 #bluetooth
 /dev/ttyHS0             0600    bluetooth   bluetooth
 /dev/ttyMSM0            0600    bluetooth   bluetooth
